@@ -23,7 +23,7 @@ add_library(libimgui UNKNOWN IMPORTED)
 set_property(TARGET libimgui PROPERTY IMPORTED_LOCATION ${IMGUI_LIBPATH})
 
 # ...
-file(GLOB SOURCES "*.cpp" "*.c")
+file(GLOB SOURCES *.cpp *.c *.h)
 add_executable(imgui_test ${SOURCES})
 
 # ...
