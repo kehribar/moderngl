@@ -212,6 +212,7 @@ static int shader_init()
   {
     glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
     std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    return 1;
   }
 
   // fragment shader
@@ -225,6 +226,7 @@ static int shader_init()
   {
     glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
     std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+    return 1;
   }
 
   // link shaders
@@ -235,13 +237,16 @@ static int shader_init()
 
   // check for linking errors
   glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-  if (!success) {
-      glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-      std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+  if (!success) 
+  {
+    glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+    std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    return 1;
   }
   glDeleteShader(vertexShader);
   glDeleteShader(fragmentShader);
 
+  // triangle!
   float vertices[] = {
     // positions         // colors
      0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // bottom right
@@ -263,6 +268,8 @@ static int shader_init()
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
   glEnableVertexAttribArray(1);
   glUseProgram(shaderProgram);
+
+  return 0;
 }
 
 // ----------------------------------------------------------------------------
