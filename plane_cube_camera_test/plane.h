@@ -43,16 +43,16 @@ class Plane_NoTexture{
       // Horizontal (?) lines
       for(int i=0; i<(gridCount + 1); i++)
       {
-        float gridPoint = -1.0f;
-        gridPoint += (float)(2 * i) / (float)((gridCount + 0));
+        float gridPoint = -0.5;
+        gridPoint += (float)(1.0 * i) / (float)((gridCount + 0));
 
         // Start point
-        planeVertices[(i * 6) + 0] = -1.0f;
+        planeVertices[(i * 6) + 0] = -0.5f;
         planeVertices[(i * 6) + 1] = gridPoint;
         planeVertices[(i * 6) + 2] = 0.0f;
 
         // End point
-        planeVertices[(i * 6) + 3] = 1.0f;
+        planeVertices[(i * 6) + 3] = 0.5f;
         planeVertices[(i * 6) + 4] = gridPoint;
         planeVertices[(i * 6) + 5] = 0.0f;
       }
@@ -61,17 +61,17 @@ class Plane_NoTexture{
       int offset = (vertex_count * 3) / 2;
       for(int i=0; i<(gridCount + 1); i++)
       {
-        float gridPoint = -1.0f;
-        gridPoint += (float)(2 * i) / (float)((gridCount + 0));
+        float gridPoint = -0.5f;
+        gridPoint += (float)(1.0 * i) / (float)((gridCount + 0));
 
         // Start point
         planeVertices[offset + (i * 6) + 0] = gridPoint;
-        planeVertices[offset + (i * 6) + 1] = -1.0f;
+        planeVertices[offset + (i * 6) + 1] = -0.5f;
         planeVertices[offset + (i * 6) + 2] = 0.0f;
 
         // End point
         planeVertices[offset + (i * 6) + 3] = gridPoint;
-        planeVertices[offset + (i * 6) + 4] = 1.0f;
+        planeVertices[offset + (i * 6) + 4] = 0.5f;
         planeVertices[offset + (i * 6) + 5] = 0.0f;
       }
 
