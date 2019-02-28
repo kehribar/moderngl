@@ -20,7 +20,7 @@ static bool z_rotate;
 // ----------------------------------------------------------------------------
 static Plane_NoTexture myPlane;
 static Cube_SixFacesSameTexture myCube;
-static Camera camera(glm::vec3(-8.0f, 5.0f, 8.0f));
+static Camera camera(glm::vec3(-9.0f, 6.0f, 9.0f));
 
 // ----------------------------------------------------------------------------
 static void gui_draw();
