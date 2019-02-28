@@ -77,6 +77,8 @@ class Plane_NoTexture{
 
       // ...
       shader.init(vertexPath, fragmentPath);
+      shader.bindVertexInput(0, "aPos");
+      shader.link();
 
       // ...
       glGenVertexArrays(1, &VAO);

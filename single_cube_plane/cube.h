@@ -83,6 +83,9 @@ class Cube_SixFacesSameTexture{
     {
       // ...
       shader.init(vertexPath, fragmentPath);
+      shader.bindVertexInput(0, "aPos");
+      shader.bindVertexInput(1, "aTexCoord");
+      shader.link();
 
       // ...
       tex_ind = opengl_getTextureID();

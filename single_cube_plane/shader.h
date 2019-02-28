@@ -24,6 +24,10 @@ class Shader{
     unsigned int ID;
 
     // ...
+    unsigned int vertex;
+    unsigned int fragment;
+
+    // ...
     void init(const char* vertexPath, const char* fragmentPath)
     {
       std::string vertexCode;
@@ -61,10 +65,6 @@ class Shader{
         const char* vShaderCode = vertexCode.c_str();
         const char * fShaderCode = fragmentCode.c_str();
 
-        // Compile shaders
-        unsigned int vertex;
-        unsigned int fragment;
-
         // Vertex shader
         vertex = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertex, 1, &vShaderCode, NULL);
@@ -87,22 +87,35 @@ class Shader{
         ID = glCreateProgram();
         glAttachShader(ID, vertex);
         glAttachShader(ID, fragment);
-        glLinkProgram(ID);
-        if(checkCompileErrors(ID, "PROGRAM") == false)
-        {
-          isValid = false;
-        }
-
-        // Delete the shaders as they're linked into our program now and no 
-        // longer necessary
-        glDeleteShader(vertex);
-        glDeleteShader(fragment);
       }
       catch(std::ifstream::failure e)
       {
         isValid = false;
         std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
       }
+    }
+
+    // ..
+    void bindVertexInput(int32_t index, const char* name)
+    {
+      // ...
+      glBindAttribLocation(ID, index, name);
+    }
+
+    // ...
+    void link()
+    {
+      // ...
+      glLinkProgram(ID);
+      if(checkCompileErrors(ID, "PROGRAM") == false)
+      {
+        isValid = false;
+      }
+
+      // Delete the shaders as they're linked into our program now and no 
+      // longer necessary
+      glDeleteShader(vertex);
+      glDeleteShader(fragment);
     }
 
     // ...
